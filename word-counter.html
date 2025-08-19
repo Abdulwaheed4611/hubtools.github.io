@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Counter - Count Words, Characters & Reading Time | Online Tools Hub</title>
+    <meta name="description" content="Free online word counter tool. Count words, characters, paragraphs, sentences and estimate reading time. Perfect for writers, students, and content creators.">
+    <meta name="keywords" content="word counter, character counter, text analysis, reading time, word count tool, text counter">
+    
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Word Counter",
+        "description": "Count words, characters, paragraphs and reading time in your text",
+        "url": "https://onlinetoolshub.com/tools/word-counter.html",
+        "applicationCategory": "Utility",
+        "operatingSystem": "Any",
+        "permissions": "none required"
+    }
+    </script>
+    
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <a href="index.html" style="color: inherit; text-decoration: none; display: flex; align-items: center; gap: 10px;">
+                    <i class="fas fa-tools"></i>
+                    <span>Tools Hub</span>
+                </a>
+            </div>
+            <div class="nav-actions">
+                <button id="darkModeToggle" class="btn-icon" title="Toggle Dark Mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="tool-container">
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb">
+            <a href="index.html">Home</a> > <span>Word Counter</span>
+        </nav>
+
+        <!-- Tool Header -->
+        <div class="tool-header">
+            <h1>Word Counter</h1>
+            <p>Count words, characters, paragraphs, sentences and estimate reading time for your text</p>
+        </div>
+
+        <!-- AdSense Banner Placeholder -->
+        <div class="ad-banner">
+            <div class="ad-placeholder">
+                <i class="fas fa-ad"></i>
+                <span>Advertisement</span>
+            </div>
+        </div>
+
+        <!-- Tool Content -->
+        <div class="tool-content">
+            <div class="tool-main">
+                <div class="form-group">
+                    <label for="textInput" class="form-label">Enter your text:</label>
+                    <textarea id="textInput" class="form-textarea" rows="10" 
+                        placeholder="Type or paste your text here to get word count, character count, and reading time..."></textarea>
+                </div>
+
+                <div class="btn-group">
+                    <button id="clearBtn" class="btn btn-secondary">
+                        <i class="fas fa-trash"></i> Clear Text
+                    </button>
+                    <button id="copyBtn" class="btn btn-primary">
+                        <i class="fas fa-copy"></i> Copy Text
+                    </button>
+                </div>
+
+                <!-- Results -->
+                <div class="result-section">
+                    <h3>Text Statistics</h3>
+                    <div class="result-item">
+                        <span class="result-label">Words:</span>
+                        <span id="wordCount" class="result-value">0</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Characters:</span>
+                        <span id="charCount" class="result-value">0</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Characters (no spaces):</span>
+                        <span id="charCountNoSpaces" class="result-value">0</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Paragraphs:</span>
+                        <span id="paragraphCount" class="result-value">0</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Sentences:</span>
+                        <span id="sentenceCount" class="result-value">0</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Reading Time:</span>
+                        <span id="readingTime" class="result-value">0 min</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Speaking Time:</span>
+                        <span id="speakingTime" class="result-value">0 min</span>
+                    </div>
+                </div>
+
+                <!-- Share Section -->
+                <div class="share-section">
+                    <h3>Share this tool</h3>
+                    <div class="share-buttons">
+                        <a href="#" class="share-btn share-twitter">
+                            <i class="fab fa-twitter"></i> Twitter
+                        </a>
+                        <a href="#" class="share-btn share-facebook">
+                            <i class="fab fa-facebook"></i> Facebook
+                        </a>
+                        <a href="#" class="share-btn share-whatsapp">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="tool-sidebar">
+                <!-- AdSense Sidebar Placeholder -->
+                <div class="ad-banner ad-sidebar">
+                    <div class="ad-placeholder">
+                        <i class="fas fa-ad"></i>
+                        <span>Advertisement</span>
+                    </div>
+                </div>
+
+                <!-- Related Tools -->
+                <div class="share-section">
+                    <h3>Related Tools</h3>
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <a href="password-generator.html" class="btn btn-outline">Password Generator</a>
+                        <a href="bmi-calculator.html" class="btn btn-outline">BMI Calculator</a>
+                        <a href="age-calculator.html" class="btn btn-outline">Age Calculator</a>
+                        <a href="json-formatter.html" class="btn btn-outline">JSON Formatter</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- AdSense Bottom Banner Placeholder -->
+        <div class="ad-banner ad-bottom">
+            <div class="ad-placeholder">
+                <i class="fas fa-ad"></i>
+                <span>Advertisement</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="global.js"></script>
+    <script src="word-counter.js"></script>
+</body>
+</html>
+

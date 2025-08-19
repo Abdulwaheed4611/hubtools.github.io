@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON Formatter & Validator - Format, Minify & Validate JSON | Online Tools Hub</title>
+    <meta name="description" content="Free online JSON formatter, validator and minifier. Format JSON with proper indentation, validate syntax, minify for production, and view JSON tree structure.">
+    <meta name="keywords" content="JSON formatter, JSON validator, JSON minifier, JSON beautifier, JSON parser, validate JSON, format JSON">
+    
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "JSON Formatter",
+        "description": "Format, validate and minify JSON data with syntax highlighting",
+        "url": "https://onlinetoolshub.com/tools/json-formatter.html",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Any",
+        "permissions": "none required"
+    }
+    </script>
+    
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    
+    <style>
+        .json-container {
+            position: relative;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+        }
+        
+        .json-textarea {
+            width: 100%;
+            min-height: 300px;
+            padding: 15px;
+            border: none;
+            background: transparent;
+            color: var(--text-primary);
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+            resize: vertical;
+            outline: none;
+        }
+        
+        .json-textarea:focus {
+            background: var(--bg-secondary);
+        }
+        
+        .json-stats {
+            background: var(--bg-tertiary);
+            padding: 8px 15px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .json-valid {
+            color: var(--success-color);
+        }
+        
+        .json-invalid {
+            color: var(--danger-color);
+        }
+        
+        .json-tree {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: 15px;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+            max-height: 400px;
+            overflow: auto;
+        }
+        
+        .json-key {
+            color: #0451a5;
+            font-weight: bold;
+        }
+        
+        .json-string {
+            color: #0f6132;
+        }
+        
+        .json-number {
+            color: #164bc5;
+        }
+        
+        .json-boolean {
+            color: #7c3aed;
+        }
+        
+        .json-null {
+            color: #6b7280;
+            font-style: italic;
+        }
+        
+        [data-theme="dark"] .json-key {
+            color: #9cdcfe;
+        }
+        
+        [data-theme="dark"] .json-string {
+            color: #ce9178;
+        }
+        
+        [data-theme="dark"] .json-number {
+            color: #b5cea8;
+        }
+        
+        [data-theme="dark"] .json-boolean {
+            color: #569cd6;
+        }
+        
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-size: 0.8rem;
+            opacity: 0.8;
+            transition: var(--transition);
+        }
+        
+        .copy-btn:hover {
+            opacity: 1;
+            transform: translateY(-1px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <a href="index.html" style="color: inherit; text-decoration: none; display: flex; align-items: center; gap: 10px;">
+                    <i class="fas fa-tools"></i>
+                    <span>Tools Hub</span>
+                </a>
+            </div>
+            <div class="nav-actions">
+                <button id="darkModeToggle" class="btn-icon" title="Toggle Dark Mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="tool-container">
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb">
+            <a href="index.html">Home</a> > <span>JSON Formatter</span>
+        </nav>
+
+        <!-- Tool Header -->
+        <div class="tool-header">
+            <h1>JSON Formatter & Validator</h1>
+            <p>Format, validate, minify and analyze JSON data with syntax highlighting</p>
+        </div>
+
+        <!-- AdSense Banner Placeholder -->
+        <div class="ad-banner">
+            <div class="ad-placeholder">
+                <i class="fas fa-ad"></i>
+                <span>Advertisement</span>
+            </div>
+        </div>
+
+        <!-- Tool Content -->
+        <div class="tool-content">
+            <div class="tool-main">
+                <!-- Input Section -->
+                <div class="form-group">
+                    <label for="jsonInput" class="form-label">Enter JSON data:</label>
+                    <div class="json-container">
+                        <textarea id="jsonInput" class="json-textarea" placeholder='{"name": "John", "age": 30, "city": "New York"}'></textarea>
+                        <div class="json-stats">
+                            <span id="jsonStatus">Ready</span>
+                            <span id="jsonSize">0 characters</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="btn-group">
+                    <button id="formatBtn" class="btn btn-primary">
+                        <i class="fas fa-indent"></i> Format
+                    </button>
+                    <button id="minifyBtn" class="btn btn-secondary">
+                        <i class="fas fa-compress"></i> Minify
+                    </button>
+                    <button id="validateBtn" class="btn btn-success">
+                        <i class="fas fa-check-circle"></i> Validate
+                    </button>
+                    <button id="clearBtn" class="btn btn-danger">
+                        <i class="fas fa-trash"></i> Clear
+                    </button>
+                </div>
+
+                <!-- Output Section -->
+                <div class="form-group">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                        <label class="form-label">Formatted Output:</label>
+                        <div>
+                            <label style="display: flex; align-items: center; gap: 8px; font-size: 0.9rem;">
+                                <input type="number" id="indentSize" min="1" max="8" value="2" style="width: 60px; padding: 4px; border: 1px solid var(--border-color); border-radius: 4px; background: var(--bg-primary); color: var(--text-primary);">
+                                <span>Indent size</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="json-container">
+                        <textarea id="jsonOutput" class="json-textarea" readonly placeholder="Formatted JSON will appear here..."></textarea>
+                        <button id="copyOutputBtn" class="copy-btn" title="Copy to clipboard">
+                            <i class="fas fa-copy"></i> Copy
+                        </button>
+                        <div class="json-stats">
+                            <span id="outputStatus">No output</span>
+                            <span id="outputSize">0 characters</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- JSON Tree View -->
+                <div id="treeSection" class="result-section hidden">
+                    <h3>JSON Tree Structure</h3>
+                    <div id="jsonTree" class="json-tree"></div>
+                </div>
+
+                <!-- JSON Analysis -->
+                <div id="analysisSection" class="result-section hidden">
+                    <h3>JSON Analysis</h3>
+                    <div id="jsonAnalysis"></div>
+                </div>
+
+                <!-- Share Section -->
+                <div class="share-section">
+                    <h3>Share this tool</h3>
+                    <div class="share-buttons">
+                        <a href="#" class="share-btn share-twitter">
+                            <i class="fab fa-twitter"></i> Twitter
+                        </a>
+                        <a href="#" class="share-btn share-facebook">
+                            <i class="fab fa-facebook"></i> Facebook
+                        </a>
+                        <a href="#" class="share-btn share-whatsapp">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="tool-sidebar">
+                <!-- AdSense Sidebar Placeholder -->
+                <div class="ad-banner ad-sidebar">
+                    <div class="ad-placeholder">
+                        <i class="fas fa-ad"></i>
+                        <span>Advertisement</span>
+                    </div>
+                </div>
+
+                <!-- JSON Guide -->
+                <div class="share-section">
+                    <h3>JSON Quick Guide</h3>
+                    <div style="font-size: 0.9rem; line-height: 1.5; color: var(--text-secondary);">
+                        <strong>JSON Rules:</strong>
+                        <ul style="margin: 10px 0; padding-left: 20px;">
+                            <li>Data in name/value pairs</li>
+                            <li>Data separated by commas</li>
+                            <li>Objects in curly braces {}</li>
+                            <li>Arrays in square brackets []</li>
+                            <li>Strings in double quotes</li>
+                            <li>No trailing commas</li>
+                        </ul>
+                        
+                        <strong>Data Types:</strong>
+                        <ul style="margin: 10px 0; padding-left: 20px;">
+                            <li>String: "text"</li>
+                            <li>Number: 123, 45.67</li>
+                            <li>Boolean: true, false</li>
+                            <li>Array: [1, 2, 3]</li>
+                            <li>Object: {"key": "value"}</li>
+                            <li>null</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Related Tools -->
+                <div class="share-section">
+                    <h3>Related Tools</h3>
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <a href="word-counter.html" class="btn btn-outline">Word Counter</a>
+                        <a href="password-generator.html" class="btn btn-outline">Password Generator</a>
+                        <a href="bmi-calculator.html" class="btn btn-outline">BMI Calculator</a>
+                        <a href="age-calculator.html" class="btn btn-outline">Age Calculator</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- AdSense Bottom Banner Placeholder -->
+        <div class="ad-banner ad-bottom">
+            <div class="ad-placeholder">
+                <i class="fas fa-ad"></i>
+                <span>Advertisement</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="global.js"></script>
+    <script src="json-formatter.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Calculator - Calculate Exact Age in Years, Months, Days | Online Tools Hub</title>
+    <meta name="description" content="Calculate your exact age in years, months, days, hours, minutes and seconds. Free online age calculator with detailed breakdown and age milestones.">
+    <meta name="keywords" content="age calculator, calculate age, exact age, age in days, age in months, birthday calculator">
+    
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Age Calculator",
+        "description": "Calculate your exact age in years, months, days, hours and minutes",
+        "url": "https://onlinetoolshub.com/tools/age-calculator.html",
+        "applicationCategory": "Utility",
+        "operatingSystem": "Any",
+        "permissions": "none required"
+    }
+    </script>
+    
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <a href="index.html" style="color: inherit; text-decoration: none; display: flex; align-items: center; gap: 10px;">
+                    <i class="fas fa-tools"></i>
+                    <span>Tools Hub</span>
+                </a>
+            </div>
+            <div class="nav-actions">
+                <button id="darkModeToggle" class="btn-icon" title="Toggle Dark Mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="tool-container">
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb">
+            <a href="index.html">Home</a> > <span>Age Calculator</span>
+        </nav>
+
+        <!-- Tool Header -->
+        <div class="tool-header">
+            <h1>Age Calculator</h1>
+            <p>Calculate your exact age in years, months, days, hours, minutes and seconds</p>
+        </div>
+
+        <!-- AdSense Banner Placeholder -->
+        <div class="ad-banner">
+            <div class="ad-placeholder">
+                <i class="fas fa-ad"></i>
+                <span>Advertisement</span>
+            </div>
+        </div>
+
+        <!-- Tool Content -->
+        <div class="tool-content">
+            <div class="tool-main">
+                <!-- Date Input -->
+                <div class="form-group">
+                    <label for="birthDate" class="form-label">Your Birth Date:</label>
+                    <input type="date" id="birthDate" class="form-input">
+                </div>
+
+                <div class="form-group">
+                    <label for="targetDate" class="form-label">Calculate age as of (optional - defaults to today):</label>
+                    <input type="date" id="targetDate" class="form-input">
+                </div>
+
+                <!-- Calculate Button -->
+                <div class="btn-group">
+                    <button id="calculateBtn" class="btn btn-primary btn-block">
+                        <i class="fas fa-calculator"></i> Calculate Age
+                    </button>
+                    <button id="clearBtn" class="btn btn-secondary">
+                        <i class="fas fa-trash"></i> Clear
+                    </button>
+                    <button id="todayBtn" class="btn btn-secondary">
+                        <i class="fas fa-calendar-day"></i> Use Today
+                    </button>
+                </div>
+
+                <!-- Results -->
+                <div id="resultsSection" class="result-section hidden">
+                    <h3>Age Details</h3>
+                    <div class="result-item">
+                        <span class="result-label">Exact Age:</span>
+                        <span id="exactAge" class="result-value"></span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Total Months:</span>
+                        <span id="totalMonths" class="result-value"></span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Total Weeks:</span>
+                        <span id="totalWeeks" class="result-value"></span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Total Days:</span>
+                        <span id="totalDays" class="result-value"></span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Total Hours:</span>
+                        <span id="totalHours" class="result-value"></span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Total Minutes:</span>
+                        <span id="totalMinutes" class="result-value"></span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Total Seconds:</span>
+                        <span id="totalSeconds" class="result-value"></span>
+                    </div>
+                </div>
+
+                <!-- Age Milestones -->
+                <div id="milestonesSection" class="result-section hidden">
+                    <h3>Age Milestones</h3>
+                    <div id="milestonesList"></div>
+                </div>
+
+                <!-- Next Birthday -->
+                <div id="birthdaySection" class="result-section hidden">
+                    <h3>Next Birthday</h3>
+                    <div class="result-item">
+                        <span class="result-label">Next Birthday:</span>
+                        <span id="nextBirthday" class="result-value"></span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Days Until Birthday:</span>
+                        <span id="daysUntilBirthday" class="result-value"></span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Day of Week Born:</span>
+                        <span id="dayOfWeekBorn" class="result-value"></span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Next Birthday Day:</span>
+                        <span id="nextBirthdayDay" class="result-value"></span>
+                    </div>
+                </div>
+
+                <!-- Share Section -->
+                <div class="share-section">
+                    <h3>Share this tool</h3>
+                    <div class="share-buttons">
+                        <a href="#" class="share-btn share-twitter">
+                            <i class="fab fa-twitter"></i> Twitter
+                        </a>
+                        <a href="#" class="share-btn share-facebook">
+                            <i class="fab fa-facebook"></i> Facebook
+                        </a>
+                        <a href="#" class="share-btn share-whatsapp">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="tool-sidebar">
+                <!-- AdSense Sidebar Placeholder -->
+                <div class="ad-banner ad-sidebar">
+                    <div class="ad-placeholder">
+                        <i class="fas fa-ad"></i>
+                        <span>Advertisement</span>
+                    </div>
+                </div>
+
+                <!-- Quick Facts -->
+                <div class="share-section">
+                    <h3>Did You Know?</h3>
+                    <div style="font-size: 0.9rem; line-height: 1.5; color: var(--text-secondary);">
+                        <ul style="margin: 10px 0; padding-left: 20px;">
+                            <li>Average human heart beats 100,000 times per day</li>
+                            <li>You blink about 17,000 times per day</li>
+                            <li>Your body produces 25 million new cells every second</li>
+                            <li>You take about 20,000 breaths per day</li>
+                            <li>Life expectancy has increased by 30+ years since 1900</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Related Tools -->
+                <div class="share-section">
+                    <h3>Related Tools</h3>
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <a href="word-counter.html" class="btn btn-outline">Word Counter</a>
+                        <a href="password-generator.html" class="btn btn-outline">Password Generator</a>
+                        <a href="bmi-calculator.html" class="btn btn-outline">BMI Calculator</a>
+                        <a href="json-formatter.html" class="btn btn-outline">JSON Formatter</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- AdSense Bottom Banner Placeholder -->
+        <div class="ad-banner ad-bottom">
+            <div class="ad-placeholder">
+                <i class="fas fa-ad"></i>
+                <span>Advertisement</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="global.js"></script>
+    <script src="age-calculator.js"></script>
+</body>
+</html>
+
